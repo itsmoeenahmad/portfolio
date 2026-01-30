@@ -1,0 +1,31 @@
+<nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-neutral-100">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-3 group" aria-label="Home">
+      <div class="w-8 h-8 rounded-full overflow-hidden">
+        <img src="../../assets/images/moeen-avator.png" alt="Profile" class="w-full h-full object-cover" loading="eager">
+      </div>
+      <span class="text-lg font-medium tracking-tighter uppercase">MOEEN AHMAD</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-500">
+      <a href="#about" class="hover:text-neutral-900 transition-colors">About</a>
+      <a href="#skills" class="hover:text-neutral-900 transition-colors">Expertise</a>
+      <a href="#work" class="hover:text-neutral-900 transition-colors">Work</a>
+      <a href="#experience" class="hover:text-neutral-900 transition-colors">Experience</a>
+      <a href="https://calendly.com/itsmoeenahmad/book-a-meeting" target="_blank" rel="noopener noreferrer" class="bg-neutral-900 text-white px-5 py-2 rounded-full hover:bg-neutral-800 transition-colors">Book a Meeting</a>
+    </div>
+    <button id="mobileMenuToggle" class="md:hidden text-2xl" aria-label="Toggle mobile menu" aria-expanded="false">
+      <iconify-icon icon="solar:hamburger-menu-linear"></iconify-icon>
+    </button>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-neutral-100">
+    <div class="flex flex-col gap-1 p-4">
+      <a href="#about" class="mobile-menu-link px-4 py-3 text-neutral-600 hover:bg-neutral-50 rounded-lg transition-colors">About</a>
+      <a href="#skills" class="mobile-menu-link px-4 py-3 text-neutral-600 hover:bg-neutral-50 rounded-lg transition-colors">Expertise</a>
+      <a href="#work" class="mobile-menu-link px-4 py-3 text-neutral-600 hover:bg-neutral-50 rounded-lg transition-colors">Work</a>
+      <a href="#experience" class="mobile-menu-link px-4 py-3 text-neutral-600 hover:bg-neutral-50 rounded-lg transition-colors">Experience</a>
+      <a href="https://calendly.com/itsmoeenahmad/book-a-meeting" target="_blank" rel="noopener noreferrer" class="mobile-menu-link bg-neutral-900 text-white px-4 py-3 rounded-lg hover:bg-neutral-800 transition-colors text-center mt-2">Book a Meeting</a>
+    </div>
+  </div>
+</nav>

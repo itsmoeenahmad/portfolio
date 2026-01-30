@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="I build mobile apps that work well and don't fall apart. Focused on clean code, great UI, and keeping things maintainable.">
+    <meta name="author" content="Moeen Ahmad">
+    <title>Senior Mobile App Engineer | Portfolio</title>
+
+    <link rel="icon" type="image/png" href="assets/images/moeen-avator.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Senior Mobile App Engineer | Portfolio">
+    <meta property="og:description"
+        content="Crafting product-driven, scalable mobile solutions with clean architecture.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Iconify Icons -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        neutral: {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                            950: '#0a0a0a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d4d4d4;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a3a3a3;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+        }
+
+        .testimonial-card {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.05);
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        textarea:-webkit-autofill,
+        textarea:-webkit-autofill:hover,
+        textarea:-webkit-autofill:focus {
+            -webkit-text-fill-color: #000;
+            -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 2px solid #171717;
+            outline-offset: 2px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .tech-stack-slider {
+            animation: slide 40s linear infinite;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .tech-stack-slider:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-neutral-900 font-sans antialiased selection:bg-neutral-900 selection:text-white">
+
+    <!-- Navigation -->
+    <div id="navigation"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <div id="hero"></div>
+
+        <!-- About Section -->
+        <div id="about"></div>
+
+        <!-- Skills Section -->
+        <div id="skills"></div>
+
+        <!-- Projects Section -->
+        <div id="projects"></div>
+
+        <!-- Experience Section -->
+        <div id="experience"></div>
+
+        <!-- Testimonials Section -->
+        <div id="testimonials"></div>
+
+        <!-- CTA Section -->
+        <div id="cta"></div>
+
+        <!-- Contact Section -->
+        <div id="contact"></div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- Component Loader Script -->
+    <script>
+        // Load HTML components
+        async function loadComponent(id, file) {
+            try {
+                const response = await fetch(`src/sections/${file}`);
+                const html = await response.text();
+                document.getElementById(id).innerHTML = html;
+            } catch (error) {
+                console.error(`Error loading ${file}:`, error);
+            }
+        }
+
+        // Load all components
+        async function loadAllComponents() {
+            await Promise.all([
+                loadComponent('navigation', 'navigation.html'),
+                loadComponent('hero', 'hero.html'),
+                loadComponent('about', 'about.html'),
+                loadComponent('skills', 'skills.html'),
+                loadComponent('projects', 'projects.html'),
+                loadComponent('experience', 'experience.html'),
+                loadComponent('testimonials', 'testimonials.html'),
+                loadComponent('cta', 'cta.html'),
+                loadComponent('contact', 'contact.html'),
+                loadComponent('footer', 'footer.html')
+            ]);
+
+            // Initialize mobile menu after navigation is loaded
+            initMobileMenu();
+            
+            // Initialize contact form handler after contact section is loaded
+            initContactForm();
+        }
+
+        // Mobile menu functionality
+        function initMobileMenu() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+            if (mobileMenuToggle && mobileMenu) {
+                mobileMenuToggle.addEventListener('click', () => {
+                    const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+                    mobileMenu.classList.toggle('hidden');
+                    mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+                });
+
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    });
+                });
+            }
+        }
+
+        // Contact form functionality
+        function initContactForm() {
+            const form = document.getElementById('contactForm');
+            if (!form) return;
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const submitBtn = document.getElementById('submitBtn');
+                const buttonText = document.getElementById('buttonText');
+                const buttonIcon = document.getElementById('buttonIcon');
+                const successMessage = document.getElementById('successMessage');
+                const errorMessage = document.getElementById('errorMessage');
+
+                // Hide any previous messages
+                successMessage.classList.add('hidden');
+                errorMessage.classList.add('hidden');
+
+                // Show loading state
+                submitBtn.disabled = true;
+                buttonText.textContent = 'Sending...';
+                buttonIcon.setAttribute('icon', 'svg-spinners:ring-resize');
+
+                // Submit form data
+                fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // Clear form
+                            form.reset();
+
+                            // Show success message
+                            successMessage.classList.remove('hidden');
+
+                            // Reset button state
+                            submitBtn.disabled = false;
+                            buttonText.textContent = 'Send Message';
+                            buttonIcon.setAttribute('icon', 'solar:plain-3-linear');
+
+                            // Hide success message after 8 seconds
+                            setTimeout(() => {
+                                successMessage.classList.add('hidden');
+                            }, 8000);
+                        } else {
+                            throw new Error('Form submission failed');
+                        }
+                    })
+                    .catch(error => {
+                        // Show error message
+                        errorMessage.classList.remove('hidden');
+
+                        // Reset button state on error
+                        submitBtn.disabled = false;
+                        buttonText.textContent = 'Send Message';
+                        buttonIcon.setAttribute('icon', 'solar:plain-3-linear');
+
+                        // Hide error message after 8 seconds
+                        setTimeout(() => {
+                            errorMessage.classList.add('hidden');
+                        }, 8000);
+                    });
+            });
+        }
+
+        // Load components when DOM is ready
+        document.addEventListener('DOMContentLoaded', loadAllComponents);
+    </script>
+
+</body>
+
+</html>

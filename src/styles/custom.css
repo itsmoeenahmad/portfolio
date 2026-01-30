@@ -1,0 +1,93 @@
+/**
+ * Custom Styles
+ * 
+ * This stylesheet contains custom CSS that cannot be achieved with
+ * Tailwind utility classes alone. All styles here are production-optimized
+ * and follow BEM-like naming conventions where appropriate.
+ * 
+ * Organization:
+ * 1. Custom scrollbar styling (webkit)
+ * 2. Interactive component behaviors
+ * 3. Form autofill overrides
+ */
+
+/* ============================================================
+   CUSTOM SCROLLBAR STYLING
+   Provides a minimal, elegant scrollbar for webkit browsers
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
+}
+
+
+/* ============================================================
+   PROJECT CARD IMAGE ZOOM EFFECT
+   Provides smooth scale transition on hover for project images
+   ============================================================ */
+
+.project-card:hover .project-img {
+  transform: scale(1.05);
+}
+
+
+/* ============================================================
+   FORM AUTOFILL OVERRIDE
+   Resets browser autofill styles to maintain design consistency
+   Ensures autofilled inputs match the design system
+   ============================================================ */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: #000;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+/* ============================================================
+   ACCESSIBILITY ENHANCEMENTS
+   Focus states and keyboard navigation improvements
+   ============================================================ */
+
+/* Enhanced focus states for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #171717;
+  outline-offset: 2px;
+}
+
+/* Ensure smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

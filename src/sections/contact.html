@@ -1,0 +1,52 @@
+<section id="contact" class="py-24 px-6">
+    <div class="max-w-xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-medium tracking-tight mb-3">Get in Touch</h2>
+            <p class="text-neutral-500">Have a project in mind? Send a message.</p>
+        </div>
+        <form id="contactForm" class="space-y-8" action="https://formspree.io/f/mwvbroew" method="POST">
+            <div class="group relative">
+                <input type="text" id="name" name="name" placeholder=" "
+                    class="peer w-full border-b border-neutral-300 bg-transparent py-3 text-neutral-900 focus:border-black focus:outline-none transition-colors"
+                    required aria-required="true" />
+                <label for="name"
+                    class="absolute left-0 -top-3.5 text-xs text-neutral-500 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-neutral-400 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-neutral-900">Name</label>
+            </div>
+            <div class="group relative">
+                <input type="email" id="email" name="email" placeholder=" "
+                    class="peer w-full border-b border-neutral-300 bg-transparent py-3 text-neutral-900 focus:border-black focus:outline-none transition-colors"
+                    required aria-required="true" />
+                <label for="email"
+                    class="absolute left-0 -top-3.5 text-xs text-neutral-500 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-neutral-400 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-neutral-900">Email
+                    Address</label>
+            </div>
+            <div class="group relative">
+                <textarea id="message" name="message" rows="4" placeholder=" "
+                    class="peer w-full border-b border-neutral-300 bg-transparent py-3 text-neutral-900 focus:border-black focus:outline-none resize-none transition-colors"
+                    required aria-required="true"></textarea>
+                <label for="message"
+                    class="absolute left-0 -top-3.5 text-xs text-neutral-500 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-neutral-400 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-neutral-900">Project
+                    Details</label>
+            </div>
+            <button type="submit" id="submitBtn"
+                class="w-full bg-neutral-900 text-white py-4 rounded-lg font-medium hover:bg-neutral-800 transition-colors flex items-center justify-center gap-2">
+                <span id="buttonText">Send Message</span>
+                <iconify-icon id="buttonIcon" icon="solar:plain-3-linear" width="20" aria-hidden="true"></iconify-icon>
+            </button>
+            <div id="successMessage" class="hidden text-center text-green-600 font-medium py-4 px-6 bg-green-50 rounded-lg border border-green-200">
+                <div class="flex items-center justify-center gap-2 mb-1">
+                    <iconify-icon icon="solar:check-circle-bold" width="24"></iconify-icon>
+                    <span class="text-lg">Thank you!</span>
+                </div>
+                <p class="text-sm text-neutral-700">Your message has been sent successfully. I'll contact you soon!</p>
+            </div>
+            <div id="errorMessage" class="hidden text-center text-red-600 font-medium py-4 px-6 bg-red-50 rounded-lg border border-red-200">
+                <div class="flex items-center justify-center gap-2 mb-1">
+                    <iconify-icon icon="solar:close-circle-bold" width="24"></iconify-icon>
+                    <span class="text-lg">Oops!</span>
+                </div>
+                <p class="text-sm text-neutral-700">There was a problem sending your message. Please try again.</p>
+            </div>
+        </form>
+    </div>
+</section>
