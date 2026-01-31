@@ -77,11 +77,11 @@
         }
 
         .testimonial-card {
-            transition: transform 0.3s ease-in-out;
+            transition: box-shadow 0.3s ease-in-out;
         }
 
         .testimonial-card:hover {
-            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
         input:-webkit-autofill,
@@ -129,6 +129,24 @@
         }
 
         .tech-stack-slider:hover {
+            animation-play-state: paused;
+        }
+
+        .testimonial-slider {
+            animation: slide-testimonials 60s linear infinite;
+        }
+
+        @keyframes slide-testimonials {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .testimonial-slider:hover {
             animation-play-state: paused;
         }
     </style>
@@ -198,7 +216,7 @@
 
             // Initialize mobile menu after navigation is loaded
             initMobileMenu();
-            
+
             // Initialize contact form handler after contact section is loaded
             initContactForm();
         }
