@@ -132,22 +132,28 @@
             animation-play-state: paused;
         }
 
-        .testimonial-slider {
-            animation: slide-testimonials 60s linear infinite;
+        .testimonial-track {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            cursor: grab;
         }
 
-        @keyframes slide-testimonials {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
+        .testimonial-track:active {
+            cursor: grabbing;
         }
 
-        .testimonial-slider:hover {
-            animation-play-state: paused;
+        .testimonial-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-track {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .testimonial-card {
+            scroll-snap-align: start;
         }
     </style>
 </head>
@@ -219,6 +225,9 @@
 
             // Initialize contact form handler after contact section is loaded
             initContactForm();
+
+            // Initialize testimonial drag-scroll
+            initTestimonialScroll();
         }
 
         // Mobile menu functionality
@@ -309,6 +318,41 @@
                             errorMessage.classList.add('hidden');
                         }, 8000);
                     });
+            });
+        }
+
+        // Testimonial drag-to-scroll
+        function initTestimonialScroll() {
+            const track = document.querySelector('.testimonial-track');
+            if (!track) return;
+
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            track.addEventListener('mousedown', (e) => {
+                isDown = true;
+                track.classList.add('active');
+                startX = e.pageX - track.offsetLeft;
+                scrollLeft = track.scrollLeft;
+            });
+
+            track.addEventListener('mouseleave', () => {
+                isDown = false;
+                track.classList.remove('active');
+            });
+
+            track.addEventListener('mouseup', () => {
+                isDown = false;
+                track.classList.remove('active');
+            });
+
+            track.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - track.offsetLeft;
+                const walk = (x - startX) * 1.5;
+                track.scrollLeft = scrollLeft - walk;
             });
         }
 
